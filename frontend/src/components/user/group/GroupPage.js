@@ -34,7 +34,7 @@ class GroupPage extends Component {
             lab_data: {},
             lab_admins: [],
             lab_members: [],
-            new_pos: {},
+            new_pos: { min_time_commitment: 10 },
             updated_lab: {},
             members_raw: [],
             admins_raw: [],
@@ -79,12 +79,7 @@ class GroupPage extends Component {
 
     componentWillMount() {
       getAllLabPositions(this.state.lab_id).then((resp) => {
-          let positions = [];
-          console.log(resp);
-          resp.data.map((pos, index) => {
-              positions.push(<GroupProject key={`${index}-p`} title={pos.title} spots={pos.open_slots} keywords='MISSING' description={pos.description}
-                              time_commit={pos.min_time_commitment} gpa='MISSING' year='MISSING' urop={pos.is_urop_project}/>);
-          })
+          let positions = resp.data || [];
           this.setState({lab_positions: positions});
       });
 
@@ -115,14 +110,14 @@ class GroupPage extends Component {
     alert(`attempting position create ${new_pos.title} ${new_pos.description} ${new_pos.time_commitment} ${new_pos.open_slots}`);
     createLabPosition(this.state.lab_id, new_pos).then(resp => {
     //   // hopefully get position_id from resp
-        console.log("CREATED POSITION!!! resp: ", resp);
+        let questions = []
+        if (this.state.app_questions) 
+          this.state.app_questions.map(q => questions.push(q.text))
         let application = {
-          position_id: resp.id,
-          questions: this.state.app_questions
+          position_id: resp.data.id,
+          questions,
         }
-        createApplication(this.state.lab_id, application).then(resp2 => {
-          console.log("CREATED QUESTIONS FOR POSITION!", resp2)
-        });
+        createApplication(this.state.lab_id, application);
     });
   }
 
@@ -208,7 +203,10 @@ class GroupPage extends Component {
 				<div id='group-page-main'>
 					<GroupQuickview title={this.state.lab_data.name} description={this.state.lab_data.description} superClick={() => this.openModal('edit-name')}/>
 					<GroupProjectContainer addFunction={() => this.openModal(`${this.state.lab_id}-create-position`)}>
-						{this.state.lab_positions}
+            {this.state.lab_positions.map((pos, index) => {
+              return(<GroupProject key={`${index}-p`} lab_id={this.state.lab_id} pos_id={pos.id} title={pos.title} spots={pos.open_slots} keywords='MISSING' description={pos.description}
+                        time_commit={pos.min_time_commitment} admins={this.state.admins_raw} gpa='MISSING' year='MISSING' urop={pos.is_urop_project}/>);
+            })}
 					</GroupProjectContainer>
 					<GroupPublicationsContainer>
 						<GroupPublication title={this.state.lab_data.publications}/>

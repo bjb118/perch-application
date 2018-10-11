@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import {getStudent, isLoggedIn, getCurrentUserId, getCurrentStudentId,
-				addTagsToStudent, removeTagsFromStudent, removeSkillsFromStudent,
-				removeWorkExperiencesFromStudent, addEduExperienceToStudent,
-				addWorkExperienceToStudent, addSkillsToStudent, verifyLogin, getStudentFromUser,
-				getStudentTags, getStudentSkills, getUser, updateStudent, deepCopy, primeExternalLink,
-				uploadUserFile, getUserFile, exists} from '../../../helper.js'
+import {getCurrentStudentId, addTagsToStudent, removeTagsFromStudent, removeSkillsFromStudent,
+		removeWorkExperiencesFromStudent, addEduExperienceToStudent, updateEduExperienceOfStudent,
+		addWorkExperienceToStudent, addSkillsToStudent, getStudentFromUser,
+		getStudentTags, getStudentSkills, updateStudent, deepCopy, primeExternalLink,
+		uploadUserFile, getUserFile, exists} from '../../../helper.js'
 import ErrorPage from '../../utilities/ErrorPage'
 import ExpanderIcons from '../../utilities/ExpanderIcons'
 import Editor from '../../utilities/Editor'
@@ -53,7 +52,7 @@ class StudentProfile extends Component {
 		if (field === 'classes')
 			newState.classes = newValue;
 	    this.setState(newState, () => console.log("updated", field, newValue));
-  	}
+	  }
 
   	// sends work experiences to the backend
 	sendExperiences() {
@@ -69,14 +68,33 @@ class StudentProfile extends Component {
 		}
 	}
 
+	sendEduExp(edu_exp) {
+		if (this.state.user.edu_experiences.length)
+			updateEduExperienceOfStudent(this.state.user.edu_experiences[0].id, edu_exp).then((resp) => {
+				console.log("CLASSES RESP!!!", resp)
+				this.generalHandler() })
+		else 
+			addEduExperienceToStudent(edu_exp).then((resp) => {
+				console.log("CLASSES RESP!!!", resp)
+				this.generalHandler();
+			})
+	}
+
 	// send classes to the backend
 	sendClasses() {
-		var class_arr = [];
+		let class_arr = [];
 		if (exists(this.state.updated_user.classes))
 			this.state.updated_user.classes.map(c => class_arr.push(c.name))
-		addEduExperienceToStudent(this.state.user.university,'start','end', true, this.state.user.year, this.state.user.gpa, class_arr, [this.state.user.major]).then((resp) => {
-			 this.generalHandler();
-   		})
+
+		let edu_exp = {
+			university_name: this.state.user.university,
+			start_date: 'Start',
+			end_date: 'End',
+			current: true,
+			class_experience_names: class_arr,
+			major_names: [this.state.user.major],
+		}
+		this.sendEduExp(edu_exp);
 	}
 
 	sendHeaderInfo() {
@@ -114,8 +132,15 @@ class StudentProfile extends Component {
 		var class_arr = [];
 		if (this.state.user.classes) 
 			this.state.user.classes.map(c => class_arr.push(c.name))
-		addEduExperienceToStudent(this.state.user.university,'start','end', true, this.state.updated_user.year, this.state.updated_user.gpa, class_arr, major_arr)
-			.then((resp) => this.generalHandler())
+		let edu_exp = {
+			university_name: this.state.user.university || 'University of Michigan',
+			start_date: 'Start',
+			end_date: 'End',
+			current: true,
+			class_experience_names: class_arr || [],
+			major_names: [this.state.user.major],
+		}
+		this.sendEduExp(edu_exp);
 	}
 
 	sendContactInfo() {
@@ -324,7 +349,7 @@ class StudentProfile extends Component {
 				<EditModal id="work-edit" title="Edit Work Info" modalAction={this.sendExperiences.bind(this)}>
 					<EditExperience type="work" modalEdit={true} user={this.state.updated_user} updateUser={this.updateUser.bind(this)}/>
 				</EditModal>
-				<EditModal id="education-edit" title="Edit Education Info" modalAction={this.sendClasses.bind(this)}>
+				<EditModal id="education-edit" title="Edit Classes" modalAction={this.sendClasses.bind(this)}>
 					<EditClasses modalEdit={true} user={this.state.updated_user} updateUser={this.updateUser.bind(this)}/>
 				</EditModal>
 				<EditModal id="bio-edit" title="Edit Bio" modalAction={this.sendBio.bind(this)}>
@@ -392,11 +417,13 @@ class StudentProfile extends Component {
 	 					<UserWorkExperience expObjs={this.state.user.work_experiences}/>
 	 					<Editor superClick={() => this.openModal('work-edit')}/>
 	 				</div>
+					{/* Removing classes b/c they don't feel particularly relevant...
 	 				<div id='user-education'>
-	 					<h1>Education</h1>
+	 					<h1>Classes</h1>
 	 					<UserEducation classes={this.state.user.classes}/>
 	 					<Editor superClick={() => this.openModal('education-edit')}/>
 	 				</div>
+					*/}
 	 			</div>
 			</div>
 

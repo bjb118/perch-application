@@ -1680,7 +1680,6 @@ export function primeExternalLink(url) {
     }
 }
 
-
 // TODO ADDED BY BENJI
 export function exists(input) {
     let type = typeof input

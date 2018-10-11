@@ -87,7 +87,7 @@ class CreatePosition extends Component {
 			<div className='center-align'>
 					<form className='file-field'>
 					{/* GENERAL POSITION INFORMATION */}
-						<div className="apply-help-text">{this.state.createHelpText}</div>
+						{this.props.edit || <div className="apply-help-text">{this.state.createHelpText}</div>}
 						<h2 className="apply-question-label"><b>Title & Description</b></h2>
 						<input name="title" value={this.state.new_pos.title} type="text" placeholder="Project Title" onChange={event => this.updateNewPosState(event)}></input>
 						<textArea className="textarea-experience" name="description" value={this.state.new_pos.description} type="text" placeholder="short description of project and responsibilities for workers on project team" onChange={event => this.updateNewPosState(event)}></textArea>
@@ -112,7 +112,7 @@ class CreatePosition extends Component {
             	            </div>
 		  				</div>
 				    {/* APPLICATION QUESTIONS */}
-		  			<div className="apply-help-text">{this.state.createApplyHelpText}</div>
+		  			{this.props.edit || <div className="apply-help-text">{this.state.createApplyHelpText}</div>}
 						<h2 className="apply-question-label"><b>Project Application Questions</b></h2>
 						    {this.state.questions.map((question) => {
 								return (
