@@ -34,6 +34,7 @@ class NavBar extends Component {
 				<li><a className="nav-item" href={this.state.prof_dest}>PROFILE</a></li>
 			    {<li><a className="nav-item" href="/lab-match">PROJECTBOOK</a></li>}
 			    {isStudent() && <li><a className="nav-item" href="/dashboard">YOUR PROJECTS</a></li>}
+			    {isFaculty() && <li><a className="nav-item" href="/dashboard">YOUR LABS</a></li>}
 			    <li><a className="nav-item" href="/help">HELP</a></li>
 			    <li><a className="nav-item" href="/settings">SETTINGS</a></li>
 			    <li><a className="nav-item" onClick={logoutCurrentUser} href="/">LOGOUT</a></li>

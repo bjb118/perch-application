@@ -34,7 +34,7 @@ class TableCard extends Component {
 		}
 
 		return(
-			<div className={tableCardCSS}>
+			<div className={tableCardCSS} id={mem.slug}>
 				<div className={tableHoverCardCSS}>
 					<div>
 						<div className="table-hovercard-title">

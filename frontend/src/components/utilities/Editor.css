@@ -1,16 +1,28 @@
 .editor {
 	position: absolute;
-	right: 12px;
+	right: 5px;
 	top: 5px;
 	font-size: 12px;
 	transition: 0.2s ease;
 	cursor: pointer;
 	padding: 0 !important;
-	font-size: 18px;
-	color: var(--highlight);
+	font-size: 16px;
+	color: white;
+	background-color: rgba(0,0,0,0.1);
+	width: 35px;
+	height: 35px;
+	border-radius: 10px;
+}
+
+.editor i {
+	position: absolute;
+	transform: translate(-50%,-50%);
+	left: 50%;
+	top: 50%;
 }
 
 .editor:hover {
 	color: var(--active);
 	transition: 0.2s ease;
+	background-color: white;
 }

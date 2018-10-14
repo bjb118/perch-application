@@ -1,6 +1,6 @@
 [type="radio"]:checked + label:after, [type="radio"].with-gap:checked + label:after {
-  background-color: var(--soft-blue);
-  border-color: var(--soft-blue);
+  background-color: var(--active);
+  border-color:var(--active);
 }
 
 #first_name:focus + label, #last_name:focus + label, #email:focus + label, #password:focus + label, #password_retype:focus + label, #name:focus + label {

@@ -23,7 +23,6 @@ class Apply extends Component {
 		this.setState({
 			pos_description: this.props.description ? this.props.description : "You do interesting work.",
 			time_comm: "5-10 hours", // TODO: receive & set actual time commitment
-			open_slots: 2, // TODO: receive & set actual open slots
 			questions: [ // currently using default two questions, could make position-specific
 				{
 					id: 1,
@@ -44,7 +43,6 @@ class Apply extends Component {
 			<div className="apply-wrapper">
 				<div className="apply-descriptor"><b>Position Description: </b>{this.state.pos_description}</div>
 				<div className="apply-descriptor"><b>Time Commitment: </b>{this.state.time_comm}</div>
-				<div className="apply-descriptor"><b>Open Slots: </b>{this.state.open_slots}</div><br/>
 				<div className="apply-help-text">{this.state.applyHelpText}</div>
 				<AppQuestionTab updateQuestions={this.updateQuestions.bind(this)} questions={(this.state.questions && this.state.questions.length) ? this.state.questions : []} />
 			</div>

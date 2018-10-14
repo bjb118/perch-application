@@ -8,6 +8,12 @@
 	transition: all .2s ease-in-out;
 }
 
+.table-card.activated {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 6px rgba(0,0,0,.25);
+	cursor: pointer;
+}
+
 .table-card:hover {
 	transform: translateY(-2px);
 	box-shadow: 0 4px 6px rgba(0,0,0,.25);
@@ -39,6 +45,10 @@
 }
 
 .table-card:hover .table-card-cover {
+	opacity: 0;
+}
+
+.table-card.activated .table-card-cover {
 	opacity: 0;
 }
 
@@ -138,7 +148,6 @@
 }
 
 .key-col {
-	display: inline-block;
 	text-align: left;
 	vertical-align: center;
   display: grid;
@@ -151,13 +160,21 @@
 	margin: 5px 0px;
 	min-width: 180px;
 	justify-self: end;
+	display: grid;
+	grid-template-columns: 20% 80%;
+	cursor: pointer;
 }
 
 .key-item-text {
 	display: inline-block;
-	position: absolute;
-	padding-left: 20px;
+	padding-top: 5px;
 	font-size: 11px;
+	transition: all 0.2s ease;
+}
+
+.key-item:hover .key-item-text,
+.key-item:hover .key-tile  {
+	transform: translateX(2px);
 }
 
 .key-title {
@@ -172,6 +189,7 @@
 	height: 100%;
 	width: 22px;
 	display: inline-block;
+	transition: all 0.2s ease;
 }
 
 .table-split {

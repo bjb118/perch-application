@@ -17,7 +17,7 @@ class BasicButton extends Component {
 
 	render() {
 		return (
-			<div id="BasicBtnWrap">
+			<div id="BasicBtnWrap" style={this.props.style}>
 				{this.props.color === 'light' ? 
 					<a onClick={this.onClick} href={this.props.dest} target={this.target}>
 						<button className="btn waves-effect waves-blue waves-light basic-btn-light" name="action">

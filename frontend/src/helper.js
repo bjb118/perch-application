@@ -890,7 +890,6 @@ export function createLab(lab) {
     console.log('Creating lab');
     return axios.post('api/labs', lab)
         .then(response => {
-            sessionStorage.setItem('lab_id', response.data.result.id) // CHANGED BY BENJI
             return respond(response.status, response.data);
         })
         .catch(error => {
@@ -1141,11 +1140,10 @@ export function getLabMembers(lab_id) {
 }
 
 // Order of role_ids should correspond with order of user_ids (same size)
-// RESTRICTED: authenticated faculty member + lab owner
-export function addMembersToLab(user_ids, role_ids) {
+// RESTRICTED: authenticated faculty member + lab admin
+export function addMembersToLab(lab_id, user_ids, role_ids) {
     console.log('Adding members to lab');
 
-    let lab_id = sessionStorage.getItem('lab_id');
     let payload = {
         user_ids: user_ids,
         role_ids: role_ids
@@ -1160,11 +1158,26 @@ export function addMembersToLab(user_ids, role_ids) {
         })
 }
 
-// RESTRICTED: authenticated faculty member + lab owner
-export function removeMembersFromLab(user_ids) {
+// RESTRICTED: authenticated faculty member + lab admin
+export function updateLabMember(lab_id, user_id, role_id) {
+
+    let payload = {
+        user_ids: user_id,
+        role_ids: role_id
+    }
+    return axios.post('api/labs/' + lab_id + '/members/update', payload)
+        .then(response => {
+            return respond(response.status, response.data);
+        })
+        .catch(error => {
+            return error_handle(error);
+        })
+}
+
+// RESTRICTED: authenticated faculty member + lab admin
+export function removeMembersFromLab(lab_id, user_ids) {
     console.log('Removing members from lab');
 
-    let lab_id = sessionStorage.getItem('lab_id');
     let payload = {
         _method: 'PUT',
         user_ids: user_ids
@@ -1185,6 +1198,8 @@ export function removeMembersFromLab(user_ids) {
 // Laboratory skills
 // name - (string)
 // description - (string)
+
+// PUBLIC
 export function getAllSkills() {
     console.log('Getting all skills');
     return axios.get('api/skills')
@@ -1290,12 +1305,14 @@ export function searchMatchingTags(query) {
 
 // Positions
 // Open projects/positions in a lab
-//  lab_id - (int) id of lab to associate with
 //  title - (string)
 //  description -(text)
-//  time_commitment - (string) short description of time commitment (e.g. 10-12 hours/week)
-//  open_slots - (int) total open slots for applicants
-// NOTE: Positions must have an application attached to them to make them "live"
+//  duties - (text)
+//  min_qual - (text)
+//  min_time_commitment - (int) should be either 6,8,10,12 hours
+//  contact_email - (string)
+//  contact_phone - (string)
+//  location - (string)
 
 export function getAllLabPositions(lab_id) {
     console.log('Getting all lab positions');
@@ -1320,52 +1337,50 @@ export function getLabPosition(lab_id, position_id) {
         })
 }
 
-// // RESTRICTED: lab_id
-// export function createLabPosition(title, description, time_commitment, open_slots) {
-//     console.log('Creating position for lab');
-//
-//     let lab_id = sessionStorage.getItem('lab_id');
-//
-//     return axios.post('api/labs/' + lab_id + '/positions', {title, description, time_commitment, open_slots})
-//         .then(response => {
-//             return respond(response.status, response.data);
-//         })
-//         .catch(error => {
-//             return error_handle(error);
-//         })
-// }
-//
-// // RESTRICTED: lab_id
-// export function updateLabPosition(position_id, title, description, time_commitment, open_slots) {
-//     console.log('Updating position');
-//
-//     let lab_id = sessionStorage.getItem('lab_id');
-//     return axios.post('api/labs/' + lab_id + '/positions/update', {position_id, title, description, time_commitment, open_slots})
-//         .then(response => {
-//             return respond(response.status, response.data);
-//         })
-//         .catch(error => {
-//             return error_handle(error);
-//         })
-// }
-//
-// // RESTRICTED: lab_id
-// export function deleteLabPosition(position_ids) {
-//     console.log('Deleting positions');
-//
-//     let lab_id = sessionStorage.getItem('lab_id');
-//     let payload = {
-//         position_ids: position_ids
-//     };
-//
-//     return axios.post('api/labs/' + lab_id + '/positions/delete', payload)
-//         .then(response => {
-//             return respond(response.status, response.data);
-//         })
-//         .catch(error => {
-//             return error_handle(error);
-//         })
-// }
+// RESTRICTED: authenticated faculty member + lab admin
+export function createLabPosition(lab_id, position) {
+    console.log('Creating position for lab');
+
+    return axios.post('api/labs/' + lab_id + '/positions', position)
+        .then(response => {
+            return respond(response.status, response.data);
+        })
+        .catch(error => {
+            return error_handle(error);
+        })
+}
+
+// RESTRICTED: authenticated faculty member + lab admin
+export function updateLabPosition(lab_id, position_id, position) {
+    console.log('Updating position');
+
+    position.position_id = position_id;
+
+    return axios.post('api/labs/' + lab_id + '/positions/update', position)
+        .then(response => {
+            return respond(response.status, response.data);
+        })
+        .catch(error => {
+            return error_handle(error);
+        })
+}
+
+// RESTRICTED: authenticated faculty member + lab admin
+export function deleteLabPosition(lab_id, position_ids) {
+    console.log('Deleting positions');
+    
+    let payload = {
+        position_ids: position_ids
+    };
+
+    return axios.post('api/labs/' + lab_id + '/positions/delete', payload)
+        .then(response => {
+            return respond(response.status, response.data);
+        })
+        .catch(error => {
+            return error_handle(error);
+        })
+}
 
 // Applications
 // Application of questions attached to an open lab position

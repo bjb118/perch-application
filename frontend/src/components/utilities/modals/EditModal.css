@@ -24,6 +24,14 @@
 	max-width: 900px;
 }
 
+.modal.medium-modal {
+	height: 400px;
+}
+
+.modal.slim-modal {
+	height: 220px;
+}
+
 .modal.activated {
 	visibility: visible !important;
 	opacity: 1 !important;

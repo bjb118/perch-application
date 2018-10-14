@@ -1,6 +1,7 @@
 .dot-loader-wrapper {
   width: 100%;
   padding-left: 50%;
+  z-index: 1000;
 }
 
 .dot-loader-container {

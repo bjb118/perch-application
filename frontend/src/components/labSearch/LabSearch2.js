@@ -69,6 +69,7 @@ class LabSearch extends Component {
     	labSearch([],[],[],[],"")
 	    	.then(r => {
 	    		let positions = r.data.results
+	    		console.log('hwoh', positions)
 	    		let limit = this.state.limit
 	    		if (positions.length > limit)
 	    			newState.next = positions.slice(limit)

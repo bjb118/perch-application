@@ -57,11 +57,12 @@
 #group-admins, #group-members {
 	width: 100%;
 	background-color: var(--white);
-	border-radius: 20px 0 0 40px;
+	border-radius: var(--border-radius-L);
 	overflow: hidden;
 	transition: 0.2s ease;
 	border: 1px solid var(--d-three-grey);
 	overflow: scroll;
+	position: relative;
 }
 
 .group-photos {
@@ -69,6 +70,10 @@
 	flex-wrap: wrap;
 	justify-content: center;
 	background-color: var(--dark-blue);
+}
+
+.group-default-text {
+	padding: 20px;
 }
 
 #group-admins:hover {
@@ -84,28 +89,31 @@
 }
 
 .group-person img {
-	width: calc(100% - 6px);
+	width: 100%;
+/*	width: calc(100% - 6px);*/
 	display: block;
-	border: 3px solid white;
+	border: 1px solid white;
 }
 
 .group-person-overlay {
 	position: absolute;
 	left: 0;
-	top: -100%;
+	top: 0;
+	opacity: 0;
 	background-color: var(--primary);
 	width: 100%;
 	height: 100%;
 	z-index: 20;
 	color: var(--white);
 	overflow: hidden;
-	opacity: 0.8;
-	transition: 0.3s ease;
+	transition: 0.2s ease;
+	cursor: pointer;
 }
 
 .group-person:hover .group-person-overlay {
-	top: 0;
-	transition: 0.3s ease;
+	/*top: 0;*/
+	opacity: 0.8;
+	transition: 0.2s ease;
 }
 
 .group-person-overlay span {
@@ -156,4 +164,29 @@
     color: var(--eighty-grey);
     font-size: 13px;
     margin: 0;
+}
+
+.member-view {
+	/*display: inline-block;*/
+	/*margin-right: 20px;*/
+	/*border-right: 1px solid lightgrey;*/
+	/*padding-right: 10px;*/
+	margin-bottom: 20px;
+}
+
+
+.member-view span:first-of-type {
+	margin-right: 10px;
+	font-size: 18px;
+}
+
+.member-view div {
+	color: var(--primary);
+	cursor: pointer;
+	transition: 0.2s ease;
+}
+
+.member-view div:hover {
+	color: var(--active);
+	transition: 0.2s ease;
 }

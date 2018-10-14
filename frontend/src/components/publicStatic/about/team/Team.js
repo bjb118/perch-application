@@ -14,6 +14,7 @@ getMemberData().map(member => {
 const subteams = [ "Mascot Division", "Administration", "Web Development", "Graphics",
                     "Chemical Engineering", "Psychology/Sociology", "Chemistry", "Biology",
                     "Business", "Perch Blog", "Advisors"];
+
 // Mascot
 const t0 = ['rodriguez']
 
@@ -47,7 +48,11 @@ const t8 = ['vdoddipatla', 'aappukutty', 'rvaishnav', 'asatyavarapu']
 // Perch Blog
 const t9 = ['rtarnopol']
 
-const teamsMap = {t0, t1, t2, t3, t4, t5, t6, t7, t8, t9}
+const t10 = getAdvisorData().map(advisor => { return advisor.slug})
+
+console.log("T10", t10)
+
+const teamsMap = {t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10}
 var teamMemIdx = {
   t0: 0,  t1: 0,  t2: 0,  t3: 0,  t4: 0,  t5: 0,  t6: 0, t7: 0,  t8: 0,  t9: 0,
 }
@@ -108,6 +113,17 @@ class Team extends Component {
     }
   }
 
+  mouseActionKeyItem(name, enter) {
+    let key = `t${subteams.indexOf(name)}`
+    let memberIds = teamsMap[key]
+    memberIds.map(memId => {
+      if (enter)
+        document.getElementById(memId).classList.add("activated")
+      else
+        document.getElementById(memId).classList.remove("activated")
+    })
+  }
+
   render() {
 
     var mainTableBody =
@@ -159,7 +175,9 @@ class Team extends Component {
             var subteamName = subteams[idx];
             var tileCSS = `key-tile t${idx}-tccbg`;
               return (
-                <div key={idx} className="key-item">
+                <div key={idx} className="key-item"
+                    onMouseEnter={() => this.mouseActionKeyItem(subteamName, true)}
+                    onMouseLeave={() => this.mouseActionKeyItem(subteamName, false)}>
                   <div className={tileCSS}></div>
                   <div className="key-item-text">{subteamName}</div>
                 </div>

@@ -2,7 +2,7 @@
 	width: 100%;
 	overflow: hidden;
 	background-color: white;
-	border-radius: 0 20px 0 40px;
+	border-radius: 4px;
 	border: 1px solid var(--d-three-grey);
 	position: relative;
 	text-overflow: ellipsis;

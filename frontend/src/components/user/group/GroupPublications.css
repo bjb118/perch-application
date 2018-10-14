@@ -1,7 +1,7 @@
 #group-publications-container {
 	width: 100%;
 	background-color: var(--white);
-	border-radius: 0 20px 0 40px;
+	border-radius: 4px;
 	border: 1px solid var(--d-three-grey);
 	overflow: hidden;
 	transition: 0.2s ease;

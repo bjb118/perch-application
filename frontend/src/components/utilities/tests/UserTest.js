@@ -3,6 +3,8 @@
  */
 import React from 'react'
 import * as H from '../../../helper.js'
+import ReactCrop from 'react-image-crop';
+import 'react-image-crop/dist/ReactCrop.css';
 import './tests.css'
 
 var queued = 0;
@@ -13,6 +15,9 @@ class UserTest extends React.Component {
         super();
         this.state = {
             errors: [],
+            crop: {
+                aspect: 1,
+            }
         }
     }
 
@@ -48,11 +53,29 @@ class UserTest extends React.Component {
     }
 
     getFile() {
-        H.getUserFile('profile_pic').then(r=>console.log(r.data.file.url))
-        
+        H.getUserFile('profile_pic').then(r=> {
+            console.log(r.data.file.url)
+            this.setState({img: r.data.file.url})
+        })  
     }
 
     componentDidMount() {
+        let lab_id = 0
+
+        // H.createLab({}).then(r => lab_id = )
+        H.createLab({name: 'shlabaadaba'}).then(r => lab_id = r.data.id)
+        .then(r => H.getLab(lab_id))
+        .then(r => console.log(r))
+        .then(r => H.getLabMembers(lab_id))
+        .then(r=>console.log(r))
+        .then(r=>H.getLab(lab_id))
+        // .then(r=>console.log(r))
+        // .then(r=>H.updateLab(140, {name: 'babab'}))
+        // .then(r=>H.getLab(140))
+        // .then(r=>console.log(r))
+        // .then(r=>H.addMembersToLab(140, [145],[3]))
+        // .then(r=>H.getLab(140))
+        // .then(r=>console.log(r))
         // H.uploadUserFile(f).then(r=> console.log(r))
         // H.getUserFile('profile_pic').then(r => console.log(r))
 
@@ -159,6 +182,11 @@ class UserTest extends React.Component {
 
     }
 
+    onChange(crop) {
+        console.log(crop)
+        this.setState({crop})
+    }
+
     render() {
         return(
             <div id='test'>
@@ -170,7 +198,8 @@ class UserTest extends React.Component {
                     <input type='submit'/>
                 </form>
                 <div onClick={this.getFile.bind(this)}>getFile</div>
-
+                <ReactCrop src={this.state.img} crop={this.state.crop} onChange={this.onChange.bind(this)}/>
+                
                 <h1>Student Tests</h1>
                 <h2>getAllUsers</h2>
                 <pre>{this.state.getAllUsers}</pre>

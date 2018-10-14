@@ -19,10 +19,13 @@ export class GroupPublication extends Component {
 }
 
 export const GroupPublicationsContainer = (props) => {
+	let content = <div>{props.children}</div>
+	if (props.children.length == 0)
+		content = <div className="group-default-text">No Current Publications</div>
 	return(
 		<div id='group-publications-container'>
 			<h1>Publications</h1>
-			<div>{props.children}</div>
+			{content}
 		</div>
 	)
 }

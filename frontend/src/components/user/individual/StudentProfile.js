@@ -101,7 +101,7 @@ class StudentProfile extends Component {
 		// update name, school, general handler
 		updateStudent({first_name: name})
 			.then(r => addEduExperienceToStudent(this.state.updated_user.university,'start','end', true, this.state.user.year, this.state.user.gpa, class_arr, [this.state.user.major]))
-			.then((resp) => this.generalHandler());
+			.then(this.generalHandler);
 	}
 
 	sendLinks() {
@@ -373,14 +373,14 @@ class StudentProfile extends Component {
 	 						<img id='user-quickview-img' src={this.state.user.img ? this.state.user.img : '/img/rodriguez.jpg'}/>
 	 					</div>
 	 					<div style={{position: 'relative'}}>
-		 					<img id='user-quickview-coverimage' src='https://www.idcwonline.com.au/WebRoot/ecshared01/Shops/shsh11971/543D/EABA/662D/F139/1B09/AC10/0040/8D0F/cards_single_lightblue.png' />
+		 					{/*<img id='user-quickview-coverimage' src='https://www.idcwonline.com.au/WebRoot/ecshared01/Shops/shsh11971/543D/EABA/662D/F139/1B09/AC10/0040/8D0F/cards_single_lightblue.png' />
 		 					<div id='user-quickview-footer'>
 								{this.state.user.university}
-							</div>
+							</div>*/}
 		 					<div id='user-quickview-name'>{this.state.user.name}</div>
 	 					</div>
 	 					<SkillsInterests skills={this.state.user.skills} interests={this.state.user.interests}/>
-	 					<div style={{backgroundColor: 'white', position: 'absolute', top: '0', right: '0', width: '45px', height: '40px', borderRadius: '10px'}}><Editor superClick={() => this.openModal('quickview-edit')}/></div>
+	 					<Editor superClick={() => this.openModal('quickview-edit')}/>
 	 				</div>
 	 				<div id='user-bio'>
 	 					<h1>Bio</h1>

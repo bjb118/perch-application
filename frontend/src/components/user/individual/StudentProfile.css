@@ -11,9 +11,11 @@
 #user-column-R {
 	width: 250px;
 	/* this is for formatting it to the middle with left side touching and 20px margin*/
-	right: calc(50vw - 660px/2 - 20px);
-	transform: translateX(100%);
-	position: fixed;
+	/*right: calc(50vw - 660px/2 - 20px);*/
+	/*transform: translateX(100%);*/
+	/*position: fixed;*/
+	position: absolute;
+	right: 0;
 }
 
 .ad {
@@ -26,7 +28,8 @@
 /* Left Column*/
 #user-column-L {
 	width: 250px;
-	position: fixed;
+	/*position: fixed;*/
+	position: absolute;
 }
 
 #user-column-L > div {
@@ -80,43 +83,48 @@
 /* Quickview */
 #user-quickview {
 	transition: 0.2s ease;
+	/*height: 90px;*/
 }
 
 #user-quickview-img {
-	float: left;
 	height: 100%;
 	z-index: 20;
 	border-radius: 0 4px 0px 0;
-	z-index: 20;
 	border-top: 1px solid white;
 	border-right: 1px solid white;
 	border-left: 1px solid white;
 	border-bottom: 1px solid white;
 	position: relative;
 	background-color: var(--highlight);
+	border-radius: 200px;
+	overflow: hidden;
 	/*border-bottom: 2px solid lightgrey;*/
 }
 
 #user-quickview-img-container {
-	height: 160px;
+	height: 100px;
 	position: absolute;
-	top: 60px;
+	top: 15px;
+	left: 15px;
 	border-radius: 0 4px 0px 0;
 	z-index: 19;
 	border-top: 1px solid lightgrey;
 	border-right: 1px solid lightgrey;
 	border-left: 1px solid lightgrey;
 	border-bottom: 1px solid lightgrey;
+	border-radius: 200px;
+	overflow: hidden;
 }
 
 #user-quickview-name {
-	position: absolute;
+	/*position: absolute;*/
 	bottom: 50px;
-	left: calc(225px - 2px);
-	padding-left: 20px;
+	padding-left: 140px;
 	padding-right: 30px;
 	color: white;
-	font-size: 50px;
+	font-size: 40px;
+	line-height: 130px;
+	width: 100%;
 	background-color: var(--primary);
 }
 
@@ -127,10 +135,11 @@
 	position: absolute;
 	bottom: 0;
 	border-top: 1px solid lightgrey;
-	padding-left: calc(0.7 * 225px + 20px);
+	padding-left: 20px;
 	font-size: 16px;
 	line-height: 50px;
 	color: grey;
+	/*display: none;*/
 }
 
 #user-quickview-coverimage {
@@ -153,6 +162,7 @@
 	position: relative;
 	overflow: hidden;
 	padding-bottom: 25px;
+	color: grey;
 }
 
 .user-work-title {
@@ -161,6 +171,7 @@
 	margin-left: 20px;
 	transition: 0.2s ease;
 	display: block;
+	color: black;
 }
 
 .user-work-time {
@@ -173,10 +184,10 @@
 .user-work-description {
 	margin-left: 20px;
 	margin-top: 4px;
-	font-size: 12px;
+	font-size: 14px;
 	width: 550px;
 	height: auto;
-	max-height: 56px;
+	max-height: 40px;
 	overflow: hidden;
 	transition: .3s ease;
 }
@@ -269,19 +280,38 @@
 	padding: 0 !important;
 }
 
-#user-labs div {
+#user-labs div > div {
 	padding: 0 !important;
+	padding-right: 10px !important;
+	border-bottom: 1px solid lightgrey;
+}
+
+#user-labs div div {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 60px;
+}
+
+#user-labs span {
+	color: grey;
 }
 
 #user-labs a {
 	border-bottom: 1px solid lightgrey;
-	display: block;
+	display: inline-block;
 	padding: 20px 15px;
-	text-align: center;
+	text-align: left;
+	font-size: 110%;
 }
 
-#user-labs a:last-of-type {
+#user-labs div:last-of-type {
 	border-bottom: none;
+}
+
+.user-labs-delete {
+	position: absolute;
+	right: 5px;
 }
 
 

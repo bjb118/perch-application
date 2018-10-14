@@ -1,30 +1,38 @@
 import React, {Component} from 'react';
 import AppQuestionTab from './AppQuestionTab';
-import { getLabPosition, getLab, getPositionApplication, getCurrentUserId, createApplication, createLab, updateLab, addMembersToLab, getCurrentFacultyId, getAllLabData, getAllLabs, isFaculty } from '../../helper.js';
+import { getLabPosition, getLab, getPositionApplication, getCurrentUserId, createApplication, createLab, updateLab, deleteLab, addMembersToLab, getCurrentFacultyId, getAllLabData, getAllLabs, isFaculty } from '../../helper.js';
 import './CreateLab.css';
 
-export var modalCreateLab = (lab, callback) => {
+export let modalCreateLab = (lab, callback) => {
 	if (isFaculty()) {
 		console.log("Attempting to create lab ...");
-		console.log(lab);
+		console.log("CLAB", lab);
 		createLab(getCurrentFacultyId(), lab).then(r => {
-			console.log(r);
-			console.log("r.data.id ", r.data.id)
-			//window.locaton.href = '/prof-page/' + r.data.id; // redirect to new lab page
-			callback(r.data.id);
+			updateLab(r.data.id, lab).then(r2 => {
+				callback(r.data.id);
+			})
 		})
 	}
 }
 
-export var modalUpdateLab = (lab) => {
+export let modalUpdateLab = (lab, callback) => {
 	if (isFaculty()) {
 		console.log("Attempting to update lab ...");
-		console.log(lab);
-		addMembersToLab([getCurrentUserId()], [1]).then(r => {
-			updateLab(lab.id, lab).then(r => {
-				console.log(r);
-				alert("lab updated!!!");
-			})
+		console.log("ULAB", lab);
+		updateLab(lab.id, lab).then(r => {
+			console.log(r);
+			alert("lab updated!!!");
+			callback();
+		})
+	}
+}
+
+export let modalDeleteLab = (lab, callback) => {
+	if (isFaculty()) {
+		console.log("Attempting to delete lab ...", lab.id);
+		deleteLab(lab.id).then(r => {
+			console.log(r)
+			callback();
 		})
 	}
 }
@@ -56,7 +64,7 @@ class CreateLab extends Component {
 	alterObj(e) {
 		let lab = this.state.lab;
 		lab[e.target.name] = e.target.value;
-		this.setState(lab);
+		this.setState({lab});
 		if (this.props.updateLabState) {
 			this.props.updateLabState(e.target.name, e.target.value);
 		}
@@ -75,7 +83,8 @@ class CreateLab extends Component {
 				<b>Name</b>
 				<input type='text' name='name' value={this.state.lab.name} onChange={(e) => this.alterObj(e)}/>
 				<b>Description</b>
-				<input type='text' name='description' value={this.state.lab.description} onChange={(e) => this.alterObj(e)}/>
+				<textArea className="textarea-experience" id="textArea" type="text" name='description' value={this.state.lab.description} placeholder="short description of project and responsibilities for workers on project team" onChange={(e) => this.alterObj(e)}></textArea>
+				<br/>
 				<b>Publications</b>
 				<input type='text' name='publications' value={this.state.lab.publications} onChange={(e) => this.alterObj(e)}/>
 				<b>URL</b>

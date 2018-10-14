@@ -113,12 +113,15 @@ export class GroupProject extends Component {
 
 export const GroupProjectContainer = (props) => {
 	let editor = isFaculty() ? <Editor superClick={props.addFunction} add={true}/> : null
+	let content = <div>{props.children}</div>
+	if (props.children.length == 0)
+		content = <div className="group-default-text">No Current Projects</div>
 	return(
 		<div id='group-project-container'>
 			<h1>Projects
 			{editor}
 			</h1>
-			<div>{props.children}</div>
+			{content}
 		</div>
 	)
 }
