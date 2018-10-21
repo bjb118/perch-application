@@ -5,7 +5,7 @@ import Apply from '../../user/Apply'
 import EditModal from '../../utilities/modals/EditModal'
 import CreatePosition from './CreatePosition'
 import GroupProjectRequirement from './GroupProjectRequirement'
-import {createApplicationResponse, isFaculty, getCurrentUserId, updateApplication, updateLabPosition, deleteLabPosition, getLabPositionApplicants} from '../../../helper.js'
+import {createApplicationResponse, isFaculty, getCurrentUserId, updateLabPositionApplication, updateLabPosition, deleteLabPosition, getLabPositionApplicationResponses} from '../../../helper.js'
 import './GroupProject.css'
 
 export class GroupProject extends Component {
@@ -41,7 +41,7 @@ export class GroupProject extends Component {
 				position_id: this.props.pos_id,
 				questions,
 			}
-			updateApplication(this.props.lab_id, application);
+            updateLabPositionApplication(this.props.lab_id, application);
 
 			if (this.props.updatePositions)
 				this.props.updatePositions();
@@ -127,7 +127,7 @@ export class GroupProject extends Component {
 
 	// Display number of applicants and modal to show applicants
 	renderApplicantCTA() {
-		getLabPositionApplicants(this.props.lab_id, this.props.pos_id).then(resp => {
+        getLabPositionApplicationResponses(this.props.lab_id, this.props.pos_id).then(resp => {
 			console.log("APPLICANTS!!!", resp);
 			var numApplicants = 2;
 			return (
