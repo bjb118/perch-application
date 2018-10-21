@@ -1454,6 +1454,11 @@ export function getLabPositionApplicationResponses(lab_id, position_id) {
 // responses - (array of strings)
 // NOTE: 'create' allows a student to start an application, but it must be 'submitted' for the lab to see
 
+
+export function createApplicationResponse(application_response) {
+    return createStudentApplicationResponse(application_response);
+}
+
 // RESTRICTED: student_id
 export function createStudentApplicationResponse(application_response) {
     console.log('Creating application response');
@@ -1612,10 +1617,10 @@ export function labSearch(areas, skills, commitments, departments, keyword) {
         })
 }
 
-// Retrieves position data based on ids from labSearch
-export function getSearchResults(position_ids) {
+// Retrieves position data based on results from labSearch
+export function getSearchResults(search_results) {
     let payload = {
-        position_ids: position_ids
+        search_results: search_results
     };
 
     return axios.post('api/search/results', payload)
