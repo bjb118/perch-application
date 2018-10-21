@@ -36,6 +36,22 @@
 	background-color: var(--active);
 }
 
+.basic-btn-delete {
+	background-color: var(--dark-red);
+	box-shadow: none;
+	letter-spacing: 1px;
+	color: var(--white);
+}
+
+.basic-btn-delete:hover {
+	background-color: var(--red);
+	box-shadow: none;
+}
+
+.basic-btn-delete:focus {
+	background-color: var(--red);
+}
+
 .inline-icon: {
 	display: inline-block;
 }

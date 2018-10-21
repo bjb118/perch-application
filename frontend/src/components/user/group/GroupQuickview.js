@@ -14,12 +14,14 @@ class GroupQuickview extends Component {
 		return(
 			<div id='group-page-quickview'>
 				<Editor superClick={this.props.superClick}/>
-				<img src='https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/NGTYhyRhgilq4uu1a/videoblocks-doodle-cartoon-animation-of-science-chemistry-physics-astronomy-and-biology-school-education-subject-used-for-presenation-title-in-4k-ultra-hd_sl2xqduzw_thumbnail-full12.png' id='group-page-coverimage' />
+				<div id='gradient-overlay'></div>
+				{/*<img src='https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/BloSxjK/a-dynamic-texture-of-mud-spots-and-smears-over-a-white-background-composite-this-over-your-footage-or-use-for-transitions-to-give-your-footage-a-grunge-style_vkwbeh56__F0000.png' id='group-page-coverimage' />*/}
+				{<img src='https://www.chem.ucla.edu/houk/houk-group-conf-room-1-august-2017.jpeg' id='group-page-coverimage' />}
 				<div id='group-page-name' className='truncate'>{this.props.title}</div>
 				{this.props.description !== 'NULL' &&
 					<div>
 						<div id='group-page-description'>{this.props.description}</div>
-						<ExpanderIcons id='group-page' action={this.expandDescription.bind(this)}/>
+						{/*<ExpanderIcons id='group-page' action={this.expandDescription.bind(this)}/>*/}
 					</div>
 				}
 			</div>

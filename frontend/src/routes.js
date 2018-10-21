@@ -69,7 +69,6 @@ class Router extends Component {
 							<Route path='/privacy-policy' component={ PrivacyPolicy } />
 							<Route path='/terms-of-service' component={ TermsOfService } />
 							<Route path='/dashboard' component={ LabDashboard } />
-							<Route path='/dashboard' component={ LabDashboard } />
 							<Route path='/student-onboarding' component={ StudentOnboarding } />
 							<Route path='/faculty-onboarding' component={ FacultyOnboarding } />
 							<Route path='/help' component={ Help } />

@@ -8,8 +8,8 @@
 	text-overflow: ellipsis;
 	text-align: justify;
 	transition: 0.2s ease;
-	padding-bottom: 5px;
 	min-height: 200px;
+	/*background-color: var(--primary);*/
 }
 
 #group-page-quickview:hover {
@@ -19,29 +19,26 @@
 
 #group-page-coverimage {
 	width: 100%;
-	height: 150px;
+	height: 400px;
 	object-fit: cover;
-	object-position: 10% 50%;
+	object-position: 10% 70%;
+	/*mask-image: linear-gradient(to top, transparent 10%, black 75%);*/
 }
 
 #group-page-name {
 	position: absolute;
-	text-align: center;
-	top: 130px;
-	font-size: 26px;
-	background-color: var(--white);
-	left: 5px;
+	text-align: left;
+	bottom: 5px;
+	font-size: 40px;
 	/*transform: translate(-50%);*/
 	padding: 0 20px;
 	font-weight: bold;
-	border-left: 2px solid var(--d-three-grey);
-	border-top: 2px solid var(--d-three-grey);
-	border-right: 2px solid var(--d-three-grey);
 	/*border-bottom: 2px solid var(--d-three-grey);*/
-	border-radius: 0 5px 0 10px;
-	max-width: calc(100% - 12px);
+	width: calc(100%);
 	white-space: nowrap;
 	color: var(--four-c-grey);
+	color: white;
+	/*background-color: white;*/
 }
 
 #group-page-description {
@@ -52,4 +49,18 @@
 	max-height: 95px;
 	overflow: hidden;
 	transition: 0.3s ease;
+	display: none;
+}
+
+#gradient-overlay {
+	position: absolute;
+	height: 200px;
+	width: 100%;
+	bottom: 0;
+	left: 0;
+	background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.8) 0%,
+    rgba(0,0,0,0.5) 0%,
+    rgba(255, 0, 0, 0) 90%);
 }

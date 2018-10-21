@@ -49,33 +49,21 @@ class LabDashboard extends Component {
 		return (
 			<div className='shift-down' style={{minHeight: '70vh'}}>
 				<div className='lab-dashboard'>
-						<h1>{boxOneTitle}</h1>
-	         	<div className='lab-dashboard-container'>
-	         		{
-	         			this.state.position_list.map((position, index) => {
-	         				return(
-		           			<div key={`position-${index}`}>
-		           				<a className='lab-dashboard-lab-name'>{position.lab.name}</a>
-		           				<LabSearchProject key={position.id} id={position.id} title={position.title} facultyOwned={facultyOwned} spots='MISSING' saved='true' description={position.description} urop={position.is_urop_project}/>
-		           			</div>
-	           			)
-	         		})}
-	      	</div>
-	     </div>
-			 <div className='lab-dashboard'>
-			 		<h1>{boxTwoTitle}</h1>
-					 <div className='lab-dashboard-container'>
-						 {
-							 this.state.applied_list.map((obj, index) => {
-								 return(
-									 <div key={`applied-${index}`}>
-										 <a className='lab-dashboard-lab-name'>{obj.lab.name}</a>
-										 <LabSearchProject key={obj.id} id={obj.id} title={obj.title} spots='MISSING' saved='true' applied={true} description={obj.description} urop={obj.is_urop_project}/>
-									 </div>
-								 )
-						 })}
-				 </div>
-			</div>
+						<h1 className='lab-dashboard-title'>{boxOneTitle}</h1>
+		         	<div className='lab-dashboard-container'>
+		         		{
+		         			this.state.position_list.map((position, index) => {
+		         				console.log(position)
+		         				return(
+			           			<div key={`position-${index}`} className='lab-dashboard-item'>
+			           				{/*<a className='lab-dashboard-lab-name'>{position.lab.name}</a>*/}
+			           				<LabSearchProject key={position.id} id={position.lab_id} title={position.title} facultyOwned={facultyOwned} spots='MISSING' saved='true' description={position.description} urop={position.is_urop_project}/>
+			           			</div>
+		           			)
+		         		})}
+		      		</div>
+	     		</div>
+
 	   </div>
 	);
 	}

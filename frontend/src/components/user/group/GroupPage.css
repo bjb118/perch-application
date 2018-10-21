@@ -29,7 +29,8 @@
 
 #group-page-main {
 	position: absolute;
-	width: 660px;
+	/*width: 660px;*/
+	width: calc(1200px - 260px);
 	height: 1000px;
 	left: 250px;
 	margin: 0 20px;

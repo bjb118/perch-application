@@ -1,13 +1,22 @@
 body {
 	background-color: white !important;
+	padding-bottom: 0px;
 }
 
 .perch-story {
+	background-color: white;
 	padding: 40px 100px;
+}
+
+.perch-story-container {
 	width: 1200px;
 	position: relative;
 	margin: auto auto;
-	height: 850px;
+	margin-top: 20px;
+}
+
+.perch-story-row:hover {
+	/*border: 1px solid red !important;*/
 }
 
 .perch-story-header {
@@ -58,4 +67,51 @@ body {
 	background-color: white;
 	padding-top: 20px;
 	padding-bottom: 20px;
+}
+
+.perch-match-img {
+	width: 100%;
+}
+
+.perch-story-row {
+	width: 100%;
+	height: 230px;
+	position: relative;
+	margin-bottom: 100px;
+}
+
+.perch-story-row-img {
+	max-width: 50%;
+	height: 100%;
+	display: inline-block;
+}
+
+.perch-story-row-text {
+	width: 50%;
+	height: 100%;
+	display: inline-block;
+	transform: translateY(-35%);
+}
+
+.perch-story-text {
+	font-size: 24px;
+	color: var(--seventy-five-grey);
+	padding: 0px 20px;
+	text-align: left;
+}
+
+.perch-story-text.centered {
+	width: 100%;
+	margin-top: 30px;
+	text-align: left;
+}
+
+.perch-story-text.long {
+	transform: translateY(-25%);
+	text-align: left;
+}
+
+.perch-story-text .extra-highlight {
+	display: inline;
+	color: var(--active);
 }

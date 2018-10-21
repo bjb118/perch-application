@@ -34,7 +34,7 @@ class GroupPage extends Component {
             lab_data: {},
             lab_admins: [],
             lab_members: [],
-            new_pos: {},
+            new_pos: { min_time_commitment: 10 },
             updated_lab: {},
             members_raw: [],
             admins_raw: [],
@@ -77,16 +77,15 @@ class GroupPage extends Component {
       })
     }
 
-    componentWillMount() {
+    loadLabPositions() {
       getAllLabPositions(this.state.lab_id).then((resp) => {
-          let positions = [];
-          console.log(resp);
-          resp.data.map((pos, index) => {
-              positions.push(<GroupProject key={`${index}-p`} title={pos.title} spots={pos.open_slots} keywords='MISSING' description={pos.description}
-                              time_commit={pos.min_time_commitment} gpa='MISSING' year='MISSING' urop={pos.is_urop_project}/>);
-          })
+          let positions = resp.data || [];
           this.setState({lab_positions: positions});
       });
+    }
+
+    componentWillMount() {
+      this.loadLabPositions();
 
       getLab(this.state.lab_id).then((resp) => {
           this.setState({lab_data: resp.data.data, updated_lab: resp.data.data});
@@ -115,14 +114,16 @@ class GroupPage extends Component {
     alert(`attempting position create ${new_pos.title} ${new_pos.description} ${new_pos.time_commitment} ${new_pos.open_slots}`);
     createLabPosition(this.state.lab_id, new_pos).then(resp => {
     //   // hopefully get position_id from resp
-        console.log("CREATED POSITION!!! resp: ", resp);
+        let questions = []
+        if (this.state.app_questions) 
+          this.state.app_questions.map(q => questions.push(q.text))
         let application = {
-          position_id: resp.id,
-          questions: this.state.app_questions
+          position_id: resp.data.id,
+          questions,
         }
-        createApplication(this.state.lab_id, application).then(resp2 => {
-          console.log("CREATED QUESTIONS FOR POSITION!", resp2)
-        });
+        createApplication(this.state.lab_id, application);
+        this.loadLabPositions();
+        this.setState({new_pos: { min_time_commitment: 10 }})
     });
   }
 
@@ -156,7 +157,7 @@ class GroupPage extends Component {
         {/* Editors (default hidden) */}
         <EditModal id={`${this.state.lab_id}-create-position`} wide={true} actionName="create"
           title={`Create New Project`} modalAction={this.createPosition.bind(this)}>
-          <CreatePosition updateNewPosState={this.updateNewPosState.bind(this)} updateAppQuestions={(app_questions) => this.setState({app_questions})} />
+          <CreatePosition updateNewPosState={this.updateNewPosState.bind(this)} new_pos={this.state.new_pos} updateAppQuestions={(app_questions) => this.setState({app_questions})} />
         </EditModal>
         <EditModal id={`edit-name`} wide={true} actionName="update" medium={true}
           title={`Update Name & Description`} modalAction={() => modalUpdateLab(this.state.updated_lab, () => getLab(this.state.lab_id))}>
@@ -200,15 +201,19 @@ class GroupPage extends Component {
 				<div id='group-page-column-L'>
 					<Administrators admin_access={this.state.admin_access} people={this.state.lab_admins}/>
 					<Members admin_access={this.state.admin_access} people={this.state.lab_members}/>
+          <QuickInfo department='MISSING'/>
+            <ContactInfo email={this.state.lab_data.contact_email} phone={this.state.lab_data.contact_phone} location={this.state.lab_data.location}/>
 				</div>
 				<div id='group-page-column-R'>
-            <QuickInfo department='MISSING'/>
-            <ContactInfo email={this.state.lab_data.contact_email} phone={this.state.lab_data.contact_phone} location={this.state.lab_data.location}/>
+            
         </div>
 				<div id='group-page-main'>
 					<GroupQuickview title={this.state.lab_data.name} description={this.state.lab_data.description} superClick={() => this.openModal('edit-name')}/>
 					<GroupProjectContainer addFunction={() => this.openModal(`${this.state.lab_id}-create-position`)}>
-						{this.state.lab_positions}
+            {this.state.lab_positions.map((pos, index) => {
+              return(<GroupProject key={`${index}-p`} lab_id={this.state.lab_id} pos_id={pos.id} cur_pos={pos} title={pos.title} spots={pos.open_slots} keywords='MISSING' description={pos.description}
+                        time_commit={pos.min_time_commitment} admins={this.state.admins_raw} gpa='MISSING' year='MISSING' urop={pos.is_urop_project} updatePositions={this.loadLabPositions.bind(this)}/>);
+            })}
 					</GroupProjectContainer>
 					<GroupPublicationsContainer>
 						<GroupPublication title={this.state.lab_data.publications}/>

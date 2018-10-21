@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="585px" height="427px" viewBox="0 0 585 427" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50 (54983) - http://www.bohemiancoding.com/sketch -->
+    <title>book</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M211.917341,1.64706587 L236.850372,19.2341098 L259.989893,1 L259.989893,1.05568236 L260.877764,0 L458,0 L458,309 L258.989865,309 L235.494946,331.469899 L212.000028,309 L13,309 L13,0 L211.036367,0 L211.917341,1.64706587 Z" id="path-1"></path>
+        <filter x="-3.4%" y="-3.6%" width="106.7%" height="109.1%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="3" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="4.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.732275723   0 0 0 0 0.732275723   0 0 0 0 0.732275723  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="light-bulb" transform="translate(-318.000000, 103.000000)"></g>
+        <g id="book" transform="translate(79.000000, 33.000000)">
+            <rect id="Rectangle-9" fill="#F8DB5D" x="0" y="14" width="223" height="315"></rect>
+            <rect id="Rectangle-9" fill="#F8DB5D" x="247" y="14" width="223" height="315"></rect>
+            <polygon id="Path-7" fill="#F8DB5D" points="211.082083 327.067277 235.577029 354.493575 260.071976 327.067277 260.071976 18.0236768 236.932455 38.2577865 211.082083 18.0236768"></polygon>
+            <polygon id="Path-7" fill="#F8DB5D" points="211.082083 327.067277 235.577029 354.493575 260.071976 327.067277 260.071976 18.0236768 236.932455 38.2577865 211.082083 18.0236768"></polygon>
+            <g id="Combined-Shape">
+                <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                <use fill="#F4F4F4" fill-rule="evenodd" xlink:href="#path-1"></use>
+            </g>
+            <polygon id="Path-7" fill="#EDEDED" points="211 308.0436 235.494946 331.469899 259.989893 308.0436 259.989893 1 236.850372 19.2341098 211 1"></polygon>
+        </g>
+    </g>
+</svg>

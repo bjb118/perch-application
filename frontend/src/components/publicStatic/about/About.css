@@ -15,6 +15,10 @@
 	min-height: 100vh;
 }
 
+.about-body {
+	background-color: white;
+}
+
 .about-nav {
 	background-color: var(--white);
 	border-bottom: 1px solid var(--d-three-grey);

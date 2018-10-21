@@ -21,7 +21,6 @@ export let modalUpdateLab = (lab, callback) => {
 		console.log("ULAB", lab);
 		updateLab(lab.id, lab).then(r => {
 			console.log(r);
-			alert("lab updated!!!");
 			callback();
 		})
 	}
@@ -83,7 +82,7 @@ class CreateLab extends Component {
 				<b>Name</b>
 				<input type='text' name='name' value={this.state.lab.name} onChange={(e) => this.alterObj(e)}/>
 				<b>Description</b>
-				<textArea className="textarea-experience" id="textArea" type="text" name='description' value={this.state.lab.description} placeholder="short description of project and responsibilities for workers on project team" onChange={(e) => this.alterObj(e)}></textArea>
+				<textarea className="textarea-experience" id="textArea" type="text" name='description' value={this.state.lab.description} placeholder="short description of project and responsibilities for workers on project team" onChange={(e) => this.alterObj(e)}></textarea>
 				<br/>
 				<b>Publications</b>
 				<input type='text' name='publications' value={this.state.lab.publications} onChange={(e) => this.alterObj(e)}/>

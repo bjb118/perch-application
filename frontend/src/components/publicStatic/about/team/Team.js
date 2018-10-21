@@ -50,8 +50,6 @@ const t9 = ['rtarnopol']
 
 const t10 = getAdvisorData().map(advisor => { return advisor.slug})
 
-console.log("T10", t10)
-
 const teamsMap = {t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10}
 var teamMemIdx = {
   t0: 0,  t1: 0,  t2: 0,  t3: 0,  t4: 0,  t5: 0,  t6: 0, t7: 0,  t8: 0,  t9: 0,
@@ -195,8 +193,7 @@ class Team extends Component {
             </div>
           </div>
           {perchiodicTable}
-        </div>
-        <div className="team">
+          <br/><br/>
         </div>
       </div>
 

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import AppQuestionTab from './AppQuestionTab';
-import { getLabPosition, getLab, getPositionApplication, createApplication } from '../../helper.js';
+import { getLabPosition, getLab, createApplication } from '../../helper.js';
 import './Apply.css';
 
 class Apply extends Component {
@@ -20,6 +20,9 @@ class Apply extends Component {
 
 	componentDidMount() {
 		// set state from passed-in position information (some currently defaulted)
+		/*getApplicationFromPosition(this.props.pos_id).then(resp2 => {
+			console.log("app from pos!!!", resp2)
+		})*/
 		this.setState({
 			pos_description: this.props.description ? this.props.description : "You do interesting work.",
 			time_comm: "5-10 hours", // TODO: receive & set actual time commitment

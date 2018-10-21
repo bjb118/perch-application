@@ -159,6 +159,7 @@ class ProfPage extends Component {
 			.then(r => {
 				console.log('created lab')
 				console.log(r)
+				this.loadLabs();
 			})
 	}
 
@@ -175,8 +176,8 @@ class ProfPage extends Component {
 				<EditModal id="contact-edit" title="Edit Contact Info" modalAction={this.sendContactInfo.bind(this)}>
 					<EditContact modalEdit={true} user={this.state.updated_user} updateUser={this.updateUser.bind(this)}/>
 				</EditModal>
-				<EditModal id="link-edit" title="Edit Links">
-					<EditLinks prof/>
+				<EditModal id="link-edit" title="Edit Links" modalAction={this.sendContactInfo.bind(this)}>
+					<EditLinks prof modalEdit={true} user={this.state.updated_user} updateUser={this.updateUser.bind(this)}/>
 				</EditModal>
 				<EditModal id="work-edit" title="Edit Work Info">
 					<EditExperience type="work"/>
@@ -209,6 +210,7 @@ class ProfPage extends Component {
 					<div className='input-field'>
 						<textarea id='lab-create-description' placeholder='we do cool stuff' />
 					</div>
+					<br/><br/>
 				</EditModal>
 				<EditModal id={`create-lab`} wide={true} actionName="create"
 					title={`Create New Lab`} modalAction={() => this.getModalAction(true)}>
@@ -239,7 +241,7 @@ class ProfPage extends Component {
 	 					</div>
 	 					<Editor superClick={() => this.openModal('contact-edit')}/>
 	 				</div>
-	 				<div id='user-links'>
+	 				{/*<div id='user-links'>
 	 					<h1>Links</h1>
 	 					<div>
 	 						<a>LinkedIn</a>
@@ -247,16 +249,12 @@ class ProfPage extends Component {
 	 						<a>Lab Resources</a>
 	 					</div>
 	 					<Editor superClick={() => this.openModal('link-edit')}/>
-	 				</div>
+	 				</div>*/}
 	 			</div>
 	 			<div id='user-column-R'>
- 				<TwitterTimelineEmbed
-				  sourceType="profile"
-				  screenName="UMichResearch"
-				  options={{height: 'calc(100vh - 200px)'}}
-				/>
+ 				
  			</div>
-	 			<div id='user-profile-column-C'>
+	 			<div id='user-column-Dashboard'>
 	 				<div id='user-quickview'>
 	 					<div id='user-quickview-img-container'>
  							<img id='user-quickview-img' src='https://homewoodfamilyaz.org/wp-content/uploads/2017/04/square_profile_pic_male.png'/>

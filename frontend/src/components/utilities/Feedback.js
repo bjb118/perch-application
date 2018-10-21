@@ -43,8 +43,8 @@ class Feedback extends Component {
 							<form className='feedback-input-container input-field'>
 								<input id='feedback-src' className='feedback-input' value={this.state.url} onChange={e => this.setState({url: e.target.value})} type="text" placeholder="Page URL"></input>
 								<label htmlFor='feedback-src'>Problem Url</label>
-								<textArea className='feedback-textarea-input' type="textArea" 
-									placeholder="A short description of your experience" onChange={e => this.setState({text: e.target.value})}></textArea>
+								<textarea className='feedback-textarea-input' type="textArea" 
+									placeholder="A short description of your experience" onChange={e => this.setState({text: e.target.value})}></textarea>
 								<br/>
 								<BasicButton msg='roast us' superClick={this.submitFeedback}/>
 							</form>

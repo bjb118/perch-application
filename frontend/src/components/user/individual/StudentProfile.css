@@ -1,4 +1,4 @@
-#user-content-body {
+ #user-content-body {
 	width: 1200px;
 	position: relative;
 	margin: auto auto;
@@ -30,6 +30,28 @@
 	width: 250px;
 	/*position: fixed;*/
 	position: absolute;
+}
+
+#user-column-Dashboard {
+	right: 0;
+	position: absolute;
+	width: calc(1200px - 260px);
+}
+
+
+#user-column-Dashboard > div:first-of-type {
+	margin: 0;
+}
+
+#user-column-Dashboard > div {
+	border: 1px solid lightgrey;
+	background-color: white;
+	width: 100%;
+	overflow: hidden;
+	position: relative;
+	border-radius: var(--border-radius-C);
+	margin-top: 10px;
+	transition: 0.2s ease;
 }
 
 #user-column-L > div {
@@ -83,6 +105,8 @@
 /* Quickview */
 #user-quickview {
 	transition: 0.2s ease;
+	height: 130px;
+	background-color: var(--primary);
 	/*height: 90px;*/
 }
 
@@ -126,6 +150,7 @@
 	line-height: 130px;
 	width: 100%;
 	background-color: var(--primary);
+	height: 130px;
 }
 
 #user-quickview-footer {

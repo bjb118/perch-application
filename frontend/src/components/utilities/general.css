@@ -11,7 +11,8 @@
 	--purple: #800080; /*CSS purple*/
     --error-yellow: #FFEA7B;
     --sunset-orange: #EF5350;
-    --red: #FF0000; /*CSS red*/
+	--red: #FF0000; /*CSS red*/
+	--dark-red: rgb(216, 16, 16); /*CSS red*/
 
     /*THEMES*/
     /*Blue*/
@@ -41,6 +42,7 @@
 	--e-grey: #EEE;
 	--d-grey: #DDD;
 	--d-three-grey: #D3D3D3; /*CSS lightgrey*/
+	--e-eight-grey: #e8e8e8;
 	--b-grey: #BBB;
 	--eighty-grey: #808080; /*CSS grey*/
     --seventy-five-grey: #757575;
@@ -57,19 +59,17 @@
 	--shift-down: 30px;
 
 	/* Subteam Colors for Perchiodic Table */
-	--t0-color: #919191;
-	--t1-color: #5FC9FC;
-	--t2-color: #D4CE75;
-	--t3-color: #204AD9;
-	--t4-color: #ff9400;
-	--t5-color: #8155E2;
-	--t6-color: #4bbc3a;
-	--t7-color: #28e5ff;
-	--t8-color: #ff516b;
-	--t9-color: #FFCD3D;
-	--t10-color: #41f483;
-	--t11-color: #4bbc3a;
-	--t12-color: #41f483;
+	--t0-color: #A0A0A0;
+	--t1-color: #E5A2B5;
+	--t2-color: #29B6F6;
+	--t3-color: #DD5656;
+	--t4-color: #96B971;
+	--t5-color: #EDA53D;
+	--t6-color: #E7DE64;
+	--t7-color: #C3AACB;
+	--t8-color: #0277BD;
+	--t9-color: #8ED2C5;
+	--t10-color: #575757;
 
 	/* Border radius */
 	--border-radius-small: 20px;
@@ -165,7 +165,7 @@
 body {
 	letter-spacing: 0.5px;
 	font-family: 'Raleway', sans-serif;
-	background-color: #e8e8e8 !important;
+	background-color: var(--e-eight-grey) !important;
 }
 
 .link-color {

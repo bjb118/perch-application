@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Apply from '../user/Apply'
 import EditModal from '../utilities/modals/EditModal'
-import {addToStudentPositionList, removeFromStudentPositionList} from '../../helper.js'
+import {addToStudentPositionList, removeFromStudentPositionList, createApplicationResponse, getCurrentStudentId} from '../../helper.js'
 import './LabSearchProject.css';
 
 class LabSearchProject extends Component {
@@ -34,7 +34,24 @@ class LabSearchProject extends Component {
     // Update this function with backend functionality to save application
     // You can access the response under 'this.state.question_resps'
     submitApplication = () => {
-      alert("Application Submitted! ... But not really.")
+        console.log("SUBMIT !!!", this.state.question_resps)
+        let resps = []
+        if (this.state.question_resps) 
+            this.state.question_resps.map(q => resps.push(q.response))
+        let application = {
+            student_id: getCurrentStudentId(),
+            position_id: this.props.id,
+            responses: resps,
+        }
+
+		createApplicationResponse(application).then(resp => {
+			if (resp.data) {
+				// get some info from resp when working
+				console.log(
+					"resp!!!!!", resp
+				)
+			}
+		});
     }
 
     saveProject = () => {

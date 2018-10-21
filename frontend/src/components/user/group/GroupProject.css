@@ -80,11 +80,16 @@
 	margin-left: 20px;
 	margin-top: 4px;
 	font-size: 14px;
-	width: 550px;
+	width: 820px;
 	height: auto;
 	max-height: 60px;
 	overflow: hidden;
 	transition: .3s ease;
+}
+
+.group-project-applicant-cta {
+	padding: 10px;
+	background-color: aliceblue;
 }
 
 #group-project-container {

@@ -3,12 +3,62 @@
 	position: relative;
 	top: 0;
 	margin: 20px auto;
-	border: 1px solid var(--d-three-grey);
-	width: 900px;
+	width: 700px;
+	border: 1px solid #ccc;
+	background-color: white;
 }
 
 .lab-dashboard-container {
-	padding-top: 20px;
+	padding-top: 0px;
+}
+
+.lab-dashboard-item:first-of-type {
+	margin-top: none !important;
+}
+
+.lab-dashboard-item div.lab-srch-project {
+	border-top: 1px solid lightgrey;
+	margin-bottom: 10px;
+	min-height: 150px;
+	background-color: #f8f8f8;
+}
+
+.lab-dashboard-item:hover div.lab-srch-project {
+	background-color: white;
+}
+
+.lab-dashboard-item div.lab-srch-project .lab-srch-project-description {
+	font-size: 14px;
+	min-height: 140px;
+	top: 45px;
+}
+
+.lab-dashboard-item div.lab-srch-project .lab-srch-project-title {
+	font-size: 24px;
+}
+
+
+.lab-dashboard-item div.lab-srch-project .lab-srch-project-action-label {
+	opacity: 0 !important;
+} 
+
+.lab-dashboard-item:hover div.lab-srch-project .lab-srch-project-action-label {
+	opacity: 1 !important;
+}
+
+.lab-dashboard-item {
+	margin-bottom: -110px;
+	transition: 0.2s ease;
+}
+
+.lab-dashboard-item:last-of-type {
+	margin-bottom: -10px;
+}
+
+.lab-dashboard-item:hover {
+	margin-bottom: -10px;
+	transition: 0.2s;
+	/*box-shadow: -1px -1px 1px 1px black;*/
 }
 
 .lab-dashboard-lab-name {
@@ -28,4 +78,9 @@
 	color: var(--primary);
 	text-transform: uppercase;
 	font-weight: bold;
+}
+
+.lab-dashboard-title {
+	border: none;
+	font-size: 30px;
 }

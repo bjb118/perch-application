@@ -503,6 +503,7 @@ export class EditQuickview extends Component {
 					        color={[0, 0, 0, 0.2]}
 					        scale={this.state.scale}
 					        rotate={this.state.rotate}
+					        borderRadius={100}
 					        className='grabbable'
 					        onPositionChange={crop => this.setState(crop)}/>
 

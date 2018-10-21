@@ -3,9 +3,10 @@
 	font-weight: normal;
 	font-size: 30px;
 	margin: auto auto;
+	padding: 0px 80px;
+	text-align: center;
 	margin-top: calc(50vh - 50px);
 	transform: translateY(-50%);
-	margin-left: 10px;
 }
 
 .temp-signup-sub {
@@ -78,6 +79,9 @@
 	background-color: var(--highlight);
 	background-color: white;
 	background-size: cover;	
+	box-shadow: 0 2px 8px rgba(0,0,0,.11);
+	z-index: 10;
+	position: relative;
 }
 
 #atf-changer {

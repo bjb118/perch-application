@@ -43,7 +43,7 @@ class LabSearchItem extends Component {
                 if (position.id == this.props.saved_labs[item].id)
                     saved = true
             }
-            all_projects.push(<LabSearchProject key={position.id} id={position.id} saved={saved} title={position.title} spots='MISSING' description={position.description} urop/>)
+            all_projects.push(<LabSearchProject key={position.id} id={position.lab_id} saved={saved} title={position.title} spots='MISSING' description={position.description} urop/>)
         })
 		return (
             <div className='lab-srch-item-container'>
