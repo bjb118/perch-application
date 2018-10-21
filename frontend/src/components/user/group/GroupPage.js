@@ -8,7 +8,7 @@ import {GroupProject, GroupProjectContainer} from './GroupProject'
 import {EditAdmins} from './GroupEditors'
 import BasicButton from '../../utilities/buttons/BasicButton'
 import {deleteLab, permissionCheck, removeMembersFromLab, getLab, isLoggedIn, getCurrentUserId, getUser, getFacultyFromUser, getAllLabPositions, createLabPosition,
-        getLabPreferences, isStudent, isLab, getLabMembers, createApplication, addMembersToLab, getCurrentLabId} from '../../../helper.js'
+    isStudent, isLab, getLabMembers, createLabPositionApplication, addMembersToLab, getCurrentLabId} from '../../../helper.js'
 import Editor from '../../utilities/Editor'
 // import $ from 'jquery'
 // import M from 'materialize-css'
@@ -121,7 +121,7 @@ class GroupPage extends Component {
           position_id: resp.data.id,
           questions,
         }
-        createApplication(this.state.lab_id, application);
+        createLabPositionApplication(this.state.lab_id, application);
         this.loadLabPositions();
         this.setState({new_pos: { min_time_commitment: 10 }})
     });
