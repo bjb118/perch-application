@@ -48,7 +48,8 @@ class TableCard extends Component {
         <img
 					className="table-card-image"
 					alt="team member"
-					src={`img/headshots/${mem.slug}.jpg`} />
+					src={`img/headshots/${mem.slug}.jpg`} 
+					onError={(e)=>{e.target.onerror = null; e.target.src="assets/LOGO.svg"}}/>
         <div className={tableCardCoverCSS}></div>
         <div className="table-card-inits"> {initials} </div>
     	</div>

@@ -11,6 +11,7 @@
 	overflow-y: auto;
 	opacity: 0;
 	transition: all 0.4s ease;
+	overflow: hidden;
 }
 
 .modal.display-modal {
@@ -99,6 +100,11 @@
 
 .modal-content {
 	text-align: left;
+}
+
+.modal-header {
+	padding-bottom: 5px;
+	border-bottom: 1px dotted lightgrey;
 }
 
 .modal-no-padding {

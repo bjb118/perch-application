@@ -2,8 +2,7 @@
 
 import React, {Component} from 'react';
 import BasicButton from '../../utilities/buttons/BasicButton';
-import '../group/LabTextInfo.css';
-
+import './ConfirmEmail.css'
 class LabTextInfo extends Component {
 	constructor(props) {
 		super(props);

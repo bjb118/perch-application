@@ -1,24 +1,32 @@
 .app-question-tab-body {
 	letter-spacing: 0.5px;
 	padding-right: 20px;
-	margin: 25px 15px;
+	padding-bottom: 20px;
+	margin-top: 10px;
 }
 
 .app-question-tab-header {
-	background-color: var(--primary);
-	color: white;
+	/*background-color: var(--primary);
+	color: white;*/
+	border: none;
+	color: #424242;
+	padding-left: 0;
+	text-transform: none;
+	font-size: 18px;
+	padding-top: 0;
 }
 
-.app-question-tab-label {
+.apply-question-tab-label {
 	text-align: left;
+	/*font-weight: bold;*/
+	font-size: 15px;
 	font-weight: bold;
-	font-size: 20px;
 }
 
 .app-question-tab {
 	display: block;
 	margin: 20px 0px;
-	background-color: var(--e-grey);
+	/*background-color: var(--e-grey);*/
 }
 
 .app-question-desc {

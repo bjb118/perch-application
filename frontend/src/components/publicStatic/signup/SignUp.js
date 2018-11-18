@@ -5,8 +5,7 @@
 import React, {Component} from 'react';
 import GoogleLogin from './GoogleLogin.js';
 import GoogleLogout from './GoogleLogout.js';
-import {registerUser, createStudent, getCurrentUserId, loginUser, loginUserIdp, getStudentFromUser} from '../../../helper.js';
-import {getAllUsers, getStudent, getAllLabs, deleteUser, getAllStudents, createFaculty, createLab, addMembersToLab, /*addLabToFaculty*/ getAllFaculties } from '../../../helper.js'
+import {registerUser, createStudent, getCurrentUserId, loginUser, loginUserIdp, createFaculty} from '../../../helper.js';
 import './SignUp.css';
 class SignUp extends Component {
 	constructor(props) {
@@ -14,10 +13,6 @@ class SignUp extends Component {
 		this.state = {
 			route: '/student-onboarding'
 		};
-		getAllUsers().then(r=>console.log(r))
-		getAllStudents().then(r=>console.log(r))
-		getAllLabs().then(r=>console.log(r))
-		getAllFaculties().then(r=>console.log(r))
 	}
 
 	generalHandler(event) {

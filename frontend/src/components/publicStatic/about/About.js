@@ -1,13 +1,29 @@
 import React, {Component} from 'react';
+import { parse } from 'query-string';
 import ReactDOM from 'react-dom';
 import Timeline from './timeline/Timeline'
 import Team from './team/Team'
 import PerchStory from './story/PerchStory'
 import './About.css';
+import {updateUrlQuery} from '../../../helper.js'
 
 class About extends Component {
 	componentDidMount() {
-		this.showStory();
+		let tab_type = this.props.location ? parse(this.props.location.search).tab : "story"
+		switch(tab_type) {
+			case 'story':
+				this.showStory();
+				break;
+			case 'team':
+				this.showTeam();
+				break;
+			case 'timeline':
+				this.showTimeline();
+				break;
+			default:
+				this.showStory();
+				break;
+		}
 	}
 
 	getNavs() {
@@ -33,18 +49,21 @@ class About extends Component {
 	showTimeline() {
 		this.highlightAboutNav('timeline');
 		this.clearAboutBody();
+		updateUrlQuery('tab', 'timeline');
 		ReactDOM.render(<Timeline />, document.getElementById('about-body'))
 	}
 
 	showStory() {
 		this.highlightAboutNav('perch story')
 		this.clearAboutBody();
+		updateUrlQuery('tab', 'story');
 		ReactDOM.render(<PerchStory />, document.getElementById('about-body'))
 	}
 
 	showTeam() {
 		this.highlightAboutNav('team')
 		this.clearAboutBody();
+		updateUrlQuery('tab', 'team');
 		ReactDOM.render(<Team />, document.getElementById('about-body'))
 	}
 

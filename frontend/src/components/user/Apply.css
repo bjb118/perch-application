@@ -3,11 +3,9 @@
 }
 
 .apply-help-text {
-  margin: 0px auto;
-  margin-bottom: 30px;
-  border-left: 5px solid var(--primary);
+  margin: 10px auto;
   text-align: left;
-  padding-left: 10px;
+  opacity: 0.6;
 }
 
 .apply-form {
@@ -17,7 +15,14 @@
 }
 
 .apply-descriptor {
-	margin-bottom: 5px;
+	margin-bottom: 20px;
+	font-size: 15px;
+	color: var(--eighty-grey);
+}
+
+.apply-descriptor b  {
+	font-size: 18px;
+	color: #424242;
 }
 
 .apply-input {

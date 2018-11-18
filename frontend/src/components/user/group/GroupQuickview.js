@@ -13,7 +13,7 @@ class GroupQuickview extends Component {
 	render() {
 		return(
 			<div id='group-page-quickview'>
-				<Editor superClick={this.props.superClick}/>
+				{this.props.admin_access && <Editor superClick={this.props.superClick}/>}
 				<div id='gradient-overlay'></div>
 				{/*<img src='https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/BloSxjK/a-dynamic-texture-of-mud-spots-and-smears-over-a-white-background-composite-this-over-your-footage-or-use-for-transitions-to-give-your-footage-a-grunge-style_vkwbeh56__F0000.png' id='group-page-coverimage' />*/}
 				{<img src='https://www.chem.ucla.edu/houk/houk-group-conf-room-1-august-2017.jpeg' id='group-page-coverimage' />}

@@ -30,6 +30,13 @@
 	width: 250px;
 	/*position: fixed;*/
 	position: absolute;
+	border: 1px solid lightgrey;
+	background-color: white;
+	overflow: hidden;
+/*	position: relative;
+*/	border-radius: var(--border-radius-L);
+	transition: 0.2s ease;
+	color: grey;
 }
 
 #user-column-Dashboard {
@@ -55,26 +62,30 @@
 }
 
 #user-column-L > div {
-	border: 1px solid lightgrey;
-	background-color: white;
-	width: 100%;
-	overflow: hidden;
+	border-bottom: 1px dotted lightgrey;
+	margin-bottom: 5px;
 	position: relative;
-	border-radius: var(--border-radius-L);
-	margin-top: 10px;
-	transition: 0.2s ease;
-	color: grey;
-	padding-bottom: 5px;
 }
 
 /* This is so the header is not padded */
 #user-column-L > div > div {
-	padding: 10px 20px;
+	padding: 5px 15px 10px 15px;
 }
 
 #user-column-L > div:first-of-type {
 	margin-top: 0;
 }
+
+#user-column-L h1 {
+	border: none;
+	padding-bottom: 0;
+}
+
+#user-column-L > div:last-of-type {
+	margin-bottom: 0;
+	border-bottom: none;
+}
+
 
 #user-column-L > div:hover {
 	box-shadow: var(--grey-shadow);
@@ -105,7 +116,7 @@
 /* Quickview */
 #user-quickview {
 	transition: 0.2s ease;
-	height: 130px;
+	min-height: 130px;
 	background-color: var(--primary);
 	/*height: 90px;*/
 }
@@ -120,13 +131,13 @@
 	border-bottom: 1px solid white;
 	position: relative;
 	background-color: var(--highlight);
-	border-radius: 200px;
+	border-radius: 50px;
 	overflow: hidden;
 	/*border-bottom: 2px solid lightgrey;*/
 }
 
 #user-quickview-img-container {
-	height: 100px;
+	height: 99px;
 	position: absolute;
 	top: 15px;
 	left: 15px;
@@ -136,7 +147,7 @@
 	border-right: 1px solid lightgrey;
 	border-left: 1px solid lightgrey;
 	border-bottom: 1px solid lightgrey;
-	border-radius: 200px;
+	border-radius: 50px;
 	overflow: hidden;
 }
 
@@ -266,6 +277,8 @@
 	overflow: hidden;
 	padding-bottom: 25px;
 	padding-top: 5px;
+	padding-right: 10px;
+	min-height: 50px;
 }
 
 .user-bio-content {
@@ -375,12 +388,12 @@
 }
 
 #user-skills-interests {
-	padding-bottom: 10px;
 	padding-left: 20px;
 	padding-right: 30px;
 	padding-top: 5px;
 	position: relative;
 	min-height: 40px;
+	/* border-bottom: 1px dotted lightgrey; */
 }
 
 .skill, .interest {
@@ -426,4 +439,9 @@
 .explanation {
 	position: absolute;
 	top: -10px;
+}
+
+
+.user-work-experience-container {
+	min-height: 20px;
 }

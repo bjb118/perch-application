@@ -1,58 +1,103 @@
-import React, {Component} from 'react';
-import './Login.css';
-import {isLoggedIn, loginUser, getCurrentUserId, isStudent, isLab, isFaculty, getCurrentLabId, getCurrentFacultyId} from '../../../helper.js';
-import alertify from 'alertify.js';
-import iziToast from 'izitoast';
+import React, { Component } from 'react'
+import './Login.css'
+import {
+  loginUser,
+  getCurrentUserId,
+  isStudent,
+  getCurrentFacultyId
+} from '../../../helper.js'
+import iziToast from 'izitoast'
 
 class Login extends Component {
+  constructor (props) {
+    super(props)
 
-	handleLogin(event) {
-		event.preventDefault();
-		let email = document.getElementById('email').value
-		let password = document.getElementById('password').value
-	
-		loginUser(email, password).then((resp)=>{
-			console.log(resp)
-			if (resp) {
-				if (isStudent()) 
-					window.location.href = `/student-profile/${getCurrentUserId()}`;
-				else if (isFaculty()) 
-					window.location.href = `/prof/${getCurrentFacultyId()}`;
-			}
-			else {
-				// alertify.error("Incorrect Username and Password");
-				iziToast.show({
-				    title: 'Error',
-				    titleColor: 'white',
-				    messageColor: 'white',
-				    message: 'Incorrect Username or Password',
-				    color: 'red',
-				    position: 'bottomLeft',
-				    progressBarColor: 'white',
-				});
-			}
-		});
-	}
+    this.state = {
+      email: '',
+      password: ''
+    }
+  }
 
-	render() {
-		return (
-			<div className='login-container valign-wrapper'>
-				<form className='container login shadow' onSubmit={this.handleLogin}>
-					<div className='new-signup-header center-align'>LOG IN</div>
-					<div className="input-field">
-		                <input id="email" type="email" required autofocus="autofocus"/>
-		                <label htmlFor="email">Email</label>
-		            </div>
-		            <div className="input-field">
-		                <input id="password" type="password" required autofocus="autofocus"/>
-		                <label htmlFor="password">Password</label>
-		            </div>
-		            <br />
-		            <button className="btn waves-effect waves-blue waves-light basic-btn" style={{width: '100%', height: '50px'}} name="action"><i className='material-icons'>lock_open</i></button>
-				</form>
-			</div>
-		);
-	}
+  // called when user tries to login
+  handleLogin (event) {
+    event.preventDefault()
+
+    let email = this.state.email
+    let password = this.state.password
+
+    // 1. Login user
+    loginUser(email, password)
+      .then(
+        resp =>
+          (window.location.href = isStudent()
+            ? `/student-profile/${getCurrentUserId()}`
+            : `/prof/${getCurrentFacultyId()}`)
+      )
+
+      // 2. or show Error message
+      .catch(e =>
+        iziToast.show({
+          title: 'Error',
+          titleColor: 'black',
+          messageColor: 'black',
+          message: 'Incorrect Username or Password',
+          color: 'red',
+          position: 'bottomLeft',
+          progressBarColor: 'white',
+          timeout: '5000',
+          class: 'toast-custom'
+        })
+      )
+  }
+
+  render () {
+    return (
+      <div className='login-container valign-wrapper'>
+        <form
+          className='container login shadow'
+          onSubmit={this.handleLogin.bind(this)}
+        >
+
+          <div className='new-signup-header center-align'>LOG IN</div>
+
+          <div className='input-field'>
+            <input
+              id='email'
+              type='email'
+              required
+              autofocus='autofocus'
+              value={this.state.email}
+              onChange={e => this.setState({ email: e.target.value })}
+            />
+            <label htmlFor='email'>Email</label>
+          </div>
+
+          <div className='input-field'>
+            <input
+              onChange={e => this.setState({ password: e.target.value })}
+              id='password'
+              type='password'
+              required
+              autofocus='autofocus'
+              value={this.state.password}
+            />
+            <label htmlFor='password'>Password</label>
+          </div>
+
+          <br />
+
+          <button
+            className='btn waves-effect waves-blue waves-light basic-btn'
+            style={{ width: '100%', height: '50px' }}
+            name='action'
+          >
+
+            <i className='material-icons'>lock_open</i>
+          </button>
+        </form>
+      </div>
+    )
+  }
 }
 
-export default Login;
+export default Login

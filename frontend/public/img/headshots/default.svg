@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="144px" height="144px" viewBox="0 0 144 144" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50 (54983) - http://www.bohemiancoding.com/sketch -->
+    <title>DefaultMember</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="40 48 104.734068 48 104.734068 54.0746575 101.743432 54.1616028 99.7359024 66.6894141 77.2224407 66.6894141 75.4023349 57.3447071 71.7639132 57.3447071 69.9845325 66.6894141 47.5082157 66.6894141 43.8461989 54.1616028 39.7797218 54.1616028"></polygon>
+        <filter x="-6.2%" y="-10.7%" width="112.3%" height="142.8%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.194887908 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="perch_match" transform="translate(-2238.000000, -552.000000)" opacity="0.446037946">
+            <g id="Lab-Members" transform="translate(1941.000000, 297.000000)">
+                <circle id="Oval-8" fill="#6B93A1" cx="369.5" cy="312.5" r="31.5"></circle>
+                <path d="M356.677975,332.523393 C356.677975,344.455147 356.677975,353.006413 356.677975,358.177191 C356.677975,365.933358 318,362.44041 318,374.988463 C318,383.353832 318,392.697717 318,403.02012 L364.978849,421.450488 L418.596879,403.02012 C418.596879,392.170475 418.596879,382.826589 418.596879,374.988463 C418.596879,363.231273 382.069999,364.827178 382.069999,358.177191 C382.069999,353.743866 382.069999,341.018136 382.069999,320 L364.978849,332.523393 L356.677975,332.523393 Z" id="Path-8" fill="#6B93A1"></path>
+                <path d="M336.5,393.5 L355.5,393.5" id="Line-4" stroke-opacity="0.510671422" stroke="#0277BD" stroke-linecap="square"></path>
+                <path d="M338,391.564429 L338,383.565837 L339.422079,382 L340.749566,383.565837 L340.749566,391.564429 L339.422079,394.093282 L338,391.564429 Z M341,391.564429 L341,383.565837 L342.422079,382 L343.749566,383.565837 L343.749566,391.564429 L342.422079,394.093282 L341,391.564429 Z" id="Path-9" fill="#0277BD"></path>
+                <polygon id="Path" fill="#46ACE8" points="341 391.564429 341 383.565837 342.422079 382 343.749566 383.565837 343.749566 391.564429 342.422079 394.093282"></polygon>
+            </g>
+        </g>
+        <g id="Path-16">
+            <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+            <use fill="#E9E9E9" fill-rule="evenodd" xlink:href="#path-1"></use>
+        </g>
+        <polygon id="Path-17" fill="#FFFFFF" points="58 52 69.2285678 52 69.2285678 55.5148576"></polygon>
+        <polygon id="Path-17" fill="#FFFFFF" points="88 52 99.2285678 52 99.2285678 55.5148576"></polygon>
+    </g>
+</svg>

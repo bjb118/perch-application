@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import ModalButton from '../utilities/buttons/ModalButton';
 import './AppQuestionTab.css';
 
 class AppQuestionTab extends Component {
@@ -21,7 +20,7 @@ class AppQuestionTab extends Component {
 	// update questions in state & return updated array to parent
 	updateQuestions(event, index) {
 		var temp_questions = this.state.questions;
-		temp_questions[index].response = event.target.value;
+		temp_questions[index].answer = event.target.value;
 		this.setState({
 			questions: temp_questions,
 		});
@@ -33,15 +32,15 @@ class AppQuestionTab extends Component {
 	render() {
 		return (
 			<div className="app-question-tab" id="appQuestionTab">
-				<h1 className='app-question-tab-header'>APPLICATION QUESTIONS</h1>
+				<h1 className='app-question-tab-header'>Let the lab get to know you:</h1>
 				<div className='app-question-tab-body'>
 					<form className='file-field'>
 					    {this.props.questions.map((question, index) => {
-					    	var key1 = question.id + "_p";
-					    	var key2 = question.id + "_text_input";
+					    	var key1 = question.number + "_p";
+					    	var key2 = question.number + "_text_input";
 							return (
-								<div key={key1}><div className="apply-question-tab-label" htmlFor={question.id}>{question.question}</div>
-								<textarea key={key2} id={question.id} type="text" className="textarea-experience" value={question.response} onChange={(e) => this.updateQuestions(e, index)} required />
+								<div key={key1}><div className="apply-question-tab-label" htmlFor={question.number}>{question.question}</div>
+								<textarea key={key2} id={question.number} type="text" className="textarea-experience" value={question.answer} onChange={(e) => this.updateQuestions(e, index)} required />
 								<br/></div>);
 						})}
 					</form>

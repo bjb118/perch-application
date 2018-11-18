@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import ListModalButton from '../../utilities/buttons/ListModalButton';
-import shave from 'shave';
 import './StudentListItem.css';
 
 class StudentListItem extends Component {

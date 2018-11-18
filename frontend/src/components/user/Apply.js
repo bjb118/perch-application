@@ -1,14 +1,16 @@
 import React, {Component} from 'react';
 import AppQuestionTab from './AppQuestionTab';
-import { getLabPosition, getLab, createApplication } from '../../helper.js';
 import './Apply.css';
+import { getLabPosition } from '../../helper';
 
 class Apply extends Component {
 	constructor(props) {
 		super(props);
+		let position = this.props.position || {}
 		this.state = {
-			questions: [],
-			applyHelpText: "To apply, fill out the questions below & click submit. A lab contact will reach out to you if it seems like a good match!",
+			questions: position.questions || [],
+			position,
+			applyHelpText: "Let the lab get to know you! It's like tinder... but a lab",
 		};
 	}
 
@@ -19,34 +21,37 @@ class Apply extends Component {
 	}
 
 	componentDidMount() {
-		// set state from passed-in position information (some currently defaulted)
-		/*getApplicationFromPosition(this.props.pos_id).then(resp2 => {
-			console.log("app from pos!!!", resp2)
-		})*/
-		this.setState({
-			pos_description: this.props.description ? this.props.description : "You do interesting work.",
-			time_comm: "5-10 hours", // TODO: receive & set actual time commitment
-			questions: [ // currently using default two questions, could make position-specific
-				{
-					id: 1,
-					question: "Why are you interested in this project?",
-					response: "",
-				},
-				{
-					id: 2,
-					question: "What makes you a good fit to work in our lab?",
-					response: "",
-				},
-			]
-		});
+		let questions = [ // currently using default two questions, could make position-specific
+			{
+				number: 1,
+				question: "Why are you interested in this project?",
+				answer: "",
+			},
+			{
+				number: 2,
+				question: "What makes you a good fit to work in our lab?",
+				answer: "",
+			},
+		];
+		getLabPosition(this.props.lab_id, this.props.pos_id).then(resp => {
+			if (resp.data && resp.data.application && resp.data.application.questions && resp.data.application.questions.length) {
+				questions = resp.data.application.questions;
+			}
+			this.setState({
+				pos_description: this.state.position.description || "No description provided.",
+				time_comm: this.state.position.min_time_commitment || "No minimum time provided.",
+				min_qual: this.state.position.min_qual,
+				questions
+			});
+		})
 	}
 
 	render() {
 		return (
 			<div className="apply-wrapper">
 				<div className="apply-descriptor"><b>Position Description: </b>{this.state.pos_description}</div>
-				<div className="apply-descriptor"><b>Time Commitment: </b>{this.state.time_comm}</div>
-				<div className="apply-help-text">{this.state.applyHelpText}</div>
+				<div className="apply-descriptor"><b>Time Commitment: </b>{this.state.time_comm} hours per week</div>
+				{this.state.min_qual && <div className="apply-descriptor"><b>Minimum Qualifications: </b>{this.state.min_qual}</div>}
 				<AppQuestionTab updateQuestions={this.updateQuestions.bind(this)} questions={(this.state.questions && this.state.questions.length) ? this.state.questions : []} />
 			</div>
 		);

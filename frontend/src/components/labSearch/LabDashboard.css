@@ -40,10 +40,23 @@
 
 .lab-dashboard-item div.lab-srch-project .lab-srch-project-action-label {
 	opacity: 0 !important;
+	transform: translateY(40px);
+	transition: 0.1s ease;
+	/*display: none;*/
 } 
+
+.lab-dashboard-item .group-project-application-submitted {
+	transform: translateY(20px);
+	transition: 0.1s ease;
+	/*display: none;*/
+}
 
 .lab-dashboard-item:hover div.lab-srch-project .lab-srch-project-action-label {
 	opacity: 1 !important;
+	transform: translateY(20px);
+	right: 0px;
+	transition: 0.1s ease;
+	/*display: block;*/
 }
 
 .lab-dashboard-item {

@@ -223,6 +223,7 @@ ul.dropdown-content.select-dropdown li:not(.disabled) span {
 h1 {
 	/*background-color: var(--primary);*/
 	padding: 10px;
+	padding-bottom: 0px;
 	color: darkgrey;
 	border-left: 5px solid var(--primary);
 	text-align: left;
