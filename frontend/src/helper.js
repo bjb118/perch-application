@@ -161,11 +161,11 @@ export function loginUser (email, password) {
     })
 }
 
-// If successful, will return an access_token
 export function loginUserIdp (data) {
   sessionStorage.clear()
 
   // Login
+  // If successful, will return an access_token
   return axios
     .post('oauth/token', {
       client_id: 1,
@@ -174,7 +174,9 @@ export function loginUserIdp (data) {
       idp: data['idp'],
       idp_token: data['token']
     })
-    .then(response => {})
+    .then(response => {
+      // do something with response.access_token
+    })
     .catch(error => {
       return error_handle(error);
     });
