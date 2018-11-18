@@ -90,7 +90,26 @@ export function registerUser (name, email, password, password_confirmation) {
     })
     .catch(error => {
       return error_handle(error)
+    });
+}
+
+// If successful, will return access_token
+export function registerUserIdp(data) {
+  return axios
+    .post('oauth/token', {
+      grant_type: 'idp',
+      idp: data['idp'],
+      client_id: 1,
+      client_secret:'',
+      idp_token: data['token'],
+      register: true
     })
+    .then(response => {
+      return respond(response.status, response.data);
+    })
+    .catch(error => {
+      return error_handle(error);
+    });
 }
 
 export function loginUser (email, password) {
@@ -142,23 +161,25 @@ export function loginUser (email, password) {
     })
 }
 
-export function loginUserIdp (email, idp, accessToken) {
+export function loginUserIdp (data) {
   sessionStorage.clear()
 
   // Login
-
+  // If successful, will return an access_token
   return axios
     .post('oauth/token', {
       client_id: 1,
+      client_secret: "",
       grant_type: 'idp',
-      idp: idp,
-      idpToken: accessToken,
-      register: false
+      idp: data['idp'],
+      idp_token: data['token']
     })
-    .then(response => {})
+    .then(response => {
+      // do something with response.access_token
+    })
     .catch(error => {
-      return error_handle(error)
-    })
+      return error_handle(error);
+    });
 }
 
 export function logoutCurrentUser () {
