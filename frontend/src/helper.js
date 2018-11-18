@@ -101,7 +101,7 @@ export function registerUserIdp(data) {
       idp: data['idp'],
       client_id: 1,
       client_secret:'',
-      idp_token: data['idp_token'],
+      idp_token: data['token'],
       register: true
     })
     .then(response => {
