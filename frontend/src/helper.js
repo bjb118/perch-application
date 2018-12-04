@@ -266,6 +266,19 @@ export function getAllUsers () {
     })
 }
 
+// Must be logged in!
+// Gets user from authentication token
+export function getUserSelf() {
+  return axios
+    .get('api/user')
+    .then(response => {
+      return respond(response.status, response.data);
+    })
+    .catch(error => {
+      return error_handle(error);
+    });
+}
+
 export function getUser (user_id) {
   return axios
     .get('api/users/' + user_id)
