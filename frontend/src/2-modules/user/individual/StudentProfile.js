@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
 import {
   getCurrentStudentId,
-  addTagsToStudent,
-  removeTagsFromStudent,
-  removeSkillsFromStudent,
+  syncTagsToStudent,
+  syncSkillsToStudent,
   removeWorkExperiencesFromStudent,
   addEduExperienceToStudent,
   updateEduExperienceOfStudent,
   addWorkExperienceToStudent,
-  addSkillsToStudent,
   getStudentFromUser,
   getStudentTags,
   getStudentSkills,
@@ -211,38 +209,20 @@ class StudentProfile extends Component {
   updateTags () {
     var skillIds = [],
       intIds = [],
-      updated_user = this.state.updated_user,
-      skill_match = {},
-      int_match = {},
-      skill_diff = [],
-      int_diff = []
+      updated_user = this.state.updated_user
 
     if (exists(updated_user.skills)) {
       updated_user.skills.map(skill => {
         skillIds.push(skill.id)
-        skill_match[skill.id] = true
       })
     }
     if (exists(updated_user.tags)) {
       updated_user.tags.map(interest => {
         intIds.push(interest.id)
-        int_match[interest.id] = true
       })
     }
-    if (exists(this.state.user.skills)) {
-      this.state.user.skills.map(skill => {
-        if (!skill_match[skill.id]) skill_diff.push(skill.id)
-      })
-    }
-    if (exists(this.state.user.tags)) {
-      this.state.user.tags.map(interest => {
-        if (!int_match[interest.id]) int_diff.push(interest.id)
-      })
-    }
-    addTagsToStudent(intIds)
-      .then(r => addSkillsToStudent(skillIds))
-      .then(r => removeTagsFromStudent(int_diff))
-      .then(r => removeSkillsFromStudent(skill_diff))
+    syncTagsToStudent(intIds)
+      .then(r => syncSkillsToStudent(skillIds))
       .then(r => this.generalHandler())
   }
 

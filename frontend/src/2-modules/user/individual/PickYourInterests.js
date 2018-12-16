@@ -6,18 +6,7 @@ import { deepCopy, exists } from '../../../helper.js'
 class PickYourInterests extends Component {
   constructor (props) {
     super(props)
-    let { tags, skills } = props.user
-    this.state = {
-      bubble_array: [],
-      tags: tags,
-      skills: skills
-    }
     this.updateBubbleChoice = this.updateBubbleChoice.bind(this)
-  }
-
-  componentWillReceiveProps (props) {
-    let { tags, skills } = props.user
-    this.setState({ tags, skills })
   }
 
   updateBubbleChoice (bubble_array, skills) {
@@ -29,32 +18,18 @@ class PickYourInterests extends Component {
   }
 
   render () {
-    let { tags, skills } = this.state
     let editorOnly = this.props.editorOnly
-
-    var skillsDisplayInfo = {
-      placeholder_txt: 'search skills',
-      header_txt: 'your skills',
-      interests: skills
-    }
-    var interestsDisplayInfo = {
-      placeholder_txt: 'search interests',
-      header_txt: 'your interests',
-      interests: tags
-    }
 
     var bubblePickers = (
       <div>
         <BubbleChoice
           ref='bubble_choice'
           skills
-          display_info={skillsDisplayInfo}
           passChosen={this.updateBubbleChoice}
         />
         <BubbleChoice
           ref='bubble_choice'
           skills={false}
-          display_info={interestsDisplayInfo}
           passChosen={this.updateBubbleChoice}
         />
       </div>
